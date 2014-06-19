@@ -1,0 +1,13 @@
+    <div class="jumbotron">
+      <div class="container">
+        <h1> Edit User </h1>
+
+
+<form action="/user/update/<%= user.id %>" method="POST">
+<input type="text" value="<%= user.name %>" name="name" ><br />
+<hr />
+<input type="submit" value="Procede"/>
+<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
+      </div>
+    </div>

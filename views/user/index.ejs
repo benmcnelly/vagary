@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <div class="container">
+
+<% _.each(users, function(user) { %>
+
+<p>
+
+<%= user.name %>
+| <a href="/user/show/<%= user.id %>"> show </a>
+| <a href="/user/edit/<%= user.id %>"> edit </a>
+| <a href="/user/destroy/<%= user.id %>"> delete </a>
+
+</p>
+
+
+<% }) %>
+
+  </div>
+</div>
+
+<a href="/user/new/"" class="btn btn-primary btn-lg"> Make a new one.. </a>

@@ -1,0 +1,30 @@
+
+
+
+
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1> new user form</h1>
+
+
+<% if(flash && flash.err) { %>
+<ul class="alert alert-success">
+<% Object.keys(flash.err).forEach(function(error) { %>
+<li><%- JSON.stringify(flash.err[error]) %> </li>
+<% }) %>
+</ul>
+<% } %>
+
+
+<form action="/user/create" method="POST">
+<input type="text" name="name" placeholder="name"><br />
+<input type="text" name="title" placeholder="title"><br />
+<input type="text" name="email" placeholder="email"><br />
+<input type="password" name="password" placeholder="password"><br />
+<hr />
+<input type="submit" value="Create Account"/>
+<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
+      </div>
+    </div>
