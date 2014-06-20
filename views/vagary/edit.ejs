@@ -1,0 +1,17 @@
+<div class="container">
+<div class="well">
+<h1> Edit Vagary </h1>
+</div>        
+
+<div class="well">
+<form action="/vagary/update/<%= vagary.id %>" method="POST">
+<input type="text" value="<%= vagary.idea %>" name="idea" ><br />
+<input type="text" value="<%= vagary.type %>" name="type" ><br />
+<input type="text" value="<%= vagary.description %>" name="description" >
+<hr />
+<input type="submit" value="Update"/>
+<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
+</div>
+      
+    </div>

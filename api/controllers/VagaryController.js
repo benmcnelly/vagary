@@ -1,5 +1,5 @@
 /**
- * UserController
+ * VagaryController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -17,18 +17,19 @@
 
 module.exports = {
 
-	'new': function (req, res) {
+// CREATE A NEW VAGARY + FLASH    
+  'new': function (req, res) {
     res.locals.flash = _.clone(req.session.flash);
-		res.view();
+    res.view();
     req.session.flash = {};
-	},
+  },
     
     create: function (req, res, next) {
 
-    	// Create User from sign up form > new.ejs
-    	User.create( req.params.all(), function userCreated (err, user) {
+      // Create User from sign up form > new.ejs
+      Vagary.create( req.params.all(), function vagaryCreated (err, vagary) {
 
-    		// be there an err log it
+        // be there an err log it
         if (err) {
           console.log(err);
           req.session.flash = {
@@ -38,69 +39,73 @@ module.exports = {
 
         
         // then i can has redirect to sign up
-    		return res.redirect('/user/new/');
+        return res.redirect('/vagary/new/');
       }
 
-    	//	res.json(user);
-        res.redirect('/user/');
+      //  res.json(user);
+        res.redirect('/vagary/');
         req.session.flash = {};
-    	});
-    },
-
-    //show controller aka view, display or whatever
-    show: function (req, res, next) {
-      User.findOne(req.param('id'), function foundUser (err, user) {
-        if (err) return next(err);
-        if (!user) return next();
-        res.view({
-          user: user
-        });
       });
     },
 
 
-    //show controller aka view, display or whatever
+// VIEW A VAGARY
+    view: function (req, res, next) {
+      Vagary.findOne(req.param('id'), function foundVagary (err, vagary) {
+        if (err) return next(err);
+        if (!vagary) return next();
+        res.view({
+          vagary: vagary
+        });
+      });
+    },
+
+// LIST ALL VAGARY
     index: function (req, res, next) {
-      User.find(function foundUsers (err, users) {
+      Vagary.find(function foundVagary (err, vagary) {
         if (err) return next(err);
         // pass all of dem user down to list template
         res.view({
-          users: users
+          vagary: vagary
         });
       });
     },
 
+// EDIT A VAGARY
     edit: function (req, res, next) {
-      User.findOne(req.param('id'), function foundUser (err, user) {
+      Vagary.findOne(req.param('id'), function foundVagary (err, vagary) {
         if (err) return next(err);
-        if (!user) return next('User doesn\'t exist.');
+        if (!vagary) return next('Vagary doesn\'t exist.');
 
         res.view({
-          user: user
+          vagary: vagary
         });
       });
     },    
 
+    // HANDLES FORM
     update: function (req, res, next) {
-      User.update(req.param('id'), req.params.all(), function userUpdated (err) {
+      Vagary.update(req.param('id'), req.params.all(), function vagaryUpdated (err) {
         if (err) {
-          return res.redirect('/user/edit/' + req.param('id'));
+          return res.redirect('/vagary/edit/' + '/wut/' + req.param('id'));
         }
 
-        res.redirect('/user/');
+        res.redirect('/vagary/');
       });
-    },
+    },    
 
+
+// DELETE A VAGARY
     destroy: function (req, res, next) {
-      User.findOne(req.param('id'), function foundUser (err, user) {
+      Vagary.findOne(req.param('id'), function foundVagary (err, vagary) {
         if (err) return next(err);
-        if (!user) return next('User doesn\'t exist.');
+        if (!vagary) return next('Vagary doesn\'t exist.');
 
-        User.destroy(req.param('id'), function userDestroyed(err) {
+        Vagary.destroy(req.param('id'), function vagaryDestroyed(err) {
           if (err) return next(err);
         });
 
-        res.redirect('/user/');
+        res.redirect('/vagary/');
 
       });
     }
@@ -109,13 +114,5 @@ module.exports = {
 
 
 
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to VagaryController)
-   */
- // _config: {}
-
-    };    
   
-
-
+};

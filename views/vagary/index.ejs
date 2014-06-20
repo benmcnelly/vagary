@@ -1,0 +1,25 @@
+<div class="container">
+
+<div class="well">
+<a href="/vagary/new/"" class="btn btn-primary btn-lg"> New Vagary </a>
+</div>
+
+
+<% _.each(vagary, function(vagary) { %>
+
+<div class="well">
+<h1><%= vagary.idea %></h1>
+<p><span class="label label-default"><%= vagary.type %></span> | <%= vagary.description %></p>
+
+<p>
+| <a href="/vagary/view/<%= vagary.id %>"> View </a>
+| <a href="/vagary/edit/<%= vagary.id %>"> Edit </a>
+| <a href="/vagary/destroy/<%= vagary.id %>"> Delete </a>
+</p>
+</div>
+
+<% }) %>
+
+
+</div>
+

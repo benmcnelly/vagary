@@ -1,0 +1,26 @@
+<div class="container">
+
+<div class="well">
+<h1> New Vagary</h1>
+</div>
+
+
+<% if(flash && flash.err) { %>
+<ul class="alert alert-success">
+<% Object.keys(flash.err).forEach(function(error) { %>
+<li><%- JSON.stringify(flash.err[error]) %> </li>
+<% }) %>
+</ul>
+<% } %>
+
+<div class="well">
+<form action="/vagary/create" method="POST">
+<input type="text" name="idea" placeholder="idea"><br />
+<input type="text" name="type" placeholder="type of idea"><br />
+<input type="text" name="description" placeholder="description"><br />
+<input type="submit" value="Create Vagary"/>
+<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
+</div>
+
+</div>
