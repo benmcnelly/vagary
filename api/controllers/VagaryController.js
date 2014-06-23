@@ -62,7 +62,7 @@ module.exports = {
 
 // LIST ALL VAGARY
     index: function (req, res, next) {
-      Vagary.find(function foundVagary (err, vagary) {
+      Vagary.find({sort:'idea ASC'},function foundVagary (err, vagary) {
         if (err) return next(err);
         // pass all of dem user down to list template
         res.view({
